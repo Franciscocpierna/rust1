@@ -1,0 +1,43 @@
+use std::io;
+fn convert_to_int(data_input: & String) -> i32{
+    let x = data_input().parse::<i32>().unwrap();
+    x
+}
+ 
+fn main() {
+    let mut number1 = String::new();
+    io::stdin().read_line(&mut number1).expect("Erro ao ler number1");
+    let mut number2 = String::new();
+    io::stdin().read_line(&mut number2).expect("Erro ao ler number2");
+ 
+    if convert_to_int(&number1) > convert_to_int(&number2){
+        println!("O numero {} eh maior que {}", number1, number2);
+    } else{
+        println!("O numero {} eh menor ou igual que {}", number1, number2);
+ 
+    }
+}
+ 
+Vamos estudar cada linha do código:
+
+Essa linha importa a biblioteca "io" do Rust, que fornece funções para entrada e saída de dados.
+
+Essa linha define uma função chamada "convert_to_int" que recebe uma referência para uma string e retorna um valor inteiro (i32).
+
+Essa linha cria uma variável local chamada "x" e atribui a ela o resultado da chamada de método "parse()" na string referenciada por "data_input". O método "parse()" tenta converter o conteúdo da string em um tipo especificado entre os sinais "::<>", nesse caso, um i32. O método "unwrap()" é chamado em seguida para obter o valor armazenado na variante "Ok" do tipo "Result" retornado pelo método "parse()". Se o método "parse()" retornar a variante "Err", o método "unwrap()" causará um panic.
+
+Essa linha retorna o valor da variável "x".
+
+Essa linha define a função principal do programa, que é executada quando o programa é iniciado.
+
+Essa linha cria uma variável mutável chamada "number1" do tipo "String" e a inicializa com uma string vazia.
+
+Essa linha chama o método "read_line()" da biblioteca "io", passando a referência para "number1" como argumento. O método "read_line()" lê uma linha de entrada do usuário até encontrar um caractere de nova linha. O método "expect()" é chamado em seguida para tratar qualquer erro que possa ocorrer durante a chamada ao método "read_line()". Se ocorrer um erro, o método "expect()" causará um panic com a mensagem de erro passada como argumento.
+
+Essa linha é similar à linha 6, criando uma nova variável mutável chamada "number2".
+
+Essa linha é similar à linha 7, lendo uma linha de entrada do usuário e armazenando-a em "number2".
+
+Essa linha é um bloco de código que é executado se a condição for verdadeira. A condição é avaliada chamando a função "convert_to_int()" com as referências para "number1" e "number2" como argumentos e comparando se o valor retornado pela primeira chamada é maior que o valor retornado pela segunda. Se a condição for verdadeira, a mensagem "O número {} é maior que {}" será impressa. Caso contrário, a mensagem "O número {number1} é menor ou igual a {number2}" é impressa.
+
+   

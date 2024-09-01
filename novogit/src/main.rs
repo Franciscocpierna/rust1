@@ -1,0 +1,8 @@
+target
+README.md
+.vscode
+*.exe
+rust/** */*.json
+*.json
+*.bin
+rust/**/*[.json, .bin, .exe]
