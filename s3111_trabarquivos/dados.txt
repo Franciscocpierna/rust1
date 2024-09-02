@@ -2,3 +2,5 @@ Arquivo de teste sendo criado
 sssssssssssssssssssssssssssss
 aaaaaaaaaaaaaaaaaaaaaaaaaaaa
 bbbbbbbbbbbbbbbbbbbbbbbbbbbbNova linha de texto
+Nova linha de texto
+Nova linha de texto
