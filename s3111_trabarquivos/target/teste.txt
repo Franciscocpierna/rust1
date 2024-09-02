@@ -1,0 +1,6 @@
+MRight click on your project
+Choose 'Build Path'
+Choose 'Add External Archives...'
+Navigate to the jar-file that includes the SQLite JDBC driver and open it
+o ideal é usar um gerenciador dependências, como Maven ou Gradle, isso já ajudaria resolver
+vários problemas em adicionar drivers
