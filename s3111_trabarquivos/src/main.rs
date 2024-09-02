@@ -2,6 +2,8 @@ use std::fs::{File, OpenOptions};
 use std::io::{BufReader, BufRead, Write};
 
 
+
+
 fn main() {
     // Abrindo o arquivo e lendo o conteúdo
     let file = File::open("dados.txt").unwrap();
