@@ -3,4 +3,5 @@ README.md
 .vscode
 *.exe
 !src
-rust1/**/*[.exe,.bin]
+rust1/**/*[.exe,.bin,.json]
+
