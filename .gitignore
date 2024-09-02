@@ -2,7 +2,7 @@ target
 README.md
 .vscode
 *.exe
-rust/** */*.json
+#rust/** */*.json
 *.json
 *.bin
 rust/**/*[.json, .bin, .exe]
