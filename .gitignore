@@ -4,5 +4,5 @@ README.md
 *.exe
 !src
 rust1/**/*[.exe,.bin,.json]
-!s*
+!s?
 
