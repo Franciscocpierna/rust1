@@ -1,6 +1,5 @@
 target/
 README.md
-.vscode
 *.exe
 !src
 rust1/**/*[.exe,.bin,.json]
