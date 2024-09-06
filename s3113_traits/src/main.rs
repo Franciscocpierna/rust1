@@ -31,6 +31,7 @@ fn main(){
     };
  
     println!("Pode {} falar ? {}", pessoa.nome, pessoa.tem_voz() );
+    
  
     
 }
