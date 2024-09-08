@@ -1,9 +1,11 @@
-#target/
+target/
 README.md
 *.exe
 !src
 !Cargo.toml
 !Cargo.lock
-rust1/**/*[.exe,.bin,.json]
-
+*.bin
+*.json
+#rust1/**/*[.exe,.bin,.json]
+!s0*.*/
 
