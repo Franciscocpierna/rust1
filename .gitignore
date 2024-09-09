@@ -7,5 +7,5 @@ README.md
 *.bin
 *.json
 #rust1/**/*[.exe,.bin,.json]
-!s0*.*/
+./**/!s0*/
 
