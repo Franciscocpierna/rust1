@@ -1,11 +1,11 @@
 target/
-README.md
-*.exe
+#README.md
+#*.exe
 !src
 !Cargo.toml
 !Cargo.lock
 *.bin
 *.json
 #rust1/**/*[.exe,.bin,.json]
-./**/!s0*/
+#./**/!s0*/
 
