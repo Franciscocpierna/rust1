@@ -2,12 +2,13 @@ mod operations;
 use operations::Operation;
 
 fn main() {
-    let operacao = Operation {addition:(4,5),subtraction:(6, 8),multiplication:(5, 4),division:(10, 2)};
+    let operacao = Operation {primeiro:10.0,segundo:2.0};
     
-    println!("Adicao {:?}", operacao.addition); 
-    println!("Subtracao {:?}", operacao.subtraction);
-    println!("Multiplicacao {:?}", operacao.multiplication);
-    println!("Divisao {:?}", operacao.division); 
+    
+    println!("Adicao {:?}", operacao.addition()); 
+    println!("Subtracao {:?}", operacao.subtraction());
+    println!("Multiplicacao {:?}", operacao.multiplication());
+    println!("Divisao {:?}", operacao.division()); 
 }
 
 
@@ -40,6 +41,8 @@ pub fn calculate(op: Operation) -> Result<i32, &'static str> {
     }
 }
 
+mod operations;
+use operations::{Operation, calculate};
 fn main() {
     let add = Operation::Addition(5, 3);
     let sub = Operation::Subtraction(5, 3);

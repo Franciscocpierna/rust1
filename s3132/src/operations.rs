@@ -1,43 +1,32 @@
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 pub struct Operation{
-   pub addition:(i32, i32),
-   pub subtraction:(i32, i32),
-   pub multiplication:(i32, i32),
-   pub division:(i32, i32),
+   pub primeiro: f64,
+   pub segundo: f64,
 }
 
 
 
-impl Operation{
-    pub fn calculate(res: Operation) -> Result<i32, &'static str> {
-        match res {
-            Operation::addition(a, b) => Ok(a + b),
-            Operation::subtraction(a, b) => Ok(a - b),
-            Operation::multiplication(a, b) => Ok(a * b),
-            Operation::division(a, b) => {
-                if b == 0 {
-                    Err("Cannot divide by zero.")
-                } else {
-                    Ok(a / b)
-                }
-            }
+
+  impl  Operation {
+    pub fn addition(&self) -> f64{
+       self.primeiro+self.segundo
+    }
+
+    pub fn subtraction(&self) -> f64{
+        self.primeiro-self.segundo
+    }
+    pub fn multiplication(&self)-> f64{
+        self.primeiro*self.segundo 
+    }
+    pub fn division(&self)-> f64{
+        if self.segundo==0.0{
+            println!("Não pode dividir por zero");
+            return 0.0;
         }
-}
+        return self.primeiro/self.segundo;
+    }
+
 }
 /*
 pub enum Operation {
