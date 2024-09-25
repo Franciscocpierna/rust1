@@ -10,8 +10,8 @@ impl Conta {
     }
     
 
-    fn get_nome(&self) ->String {
-        return self.nome.clone();
+    fn get_nome(&self) ->&String {
+         &self.nome
       }
   
      fn set_nome(&mut self, nome1: &str){

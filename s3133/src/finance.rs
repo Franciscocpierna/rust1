@@ -9,30 +9,31 @@ pub struct Portfolio {
     pub assets: Vec<Asset>,
 }
 impl Asset{
-    pub fn novo_asstet(&mut self,nome: String, preco: f64, quantidade: u32)->Asset {
+    pub fn novo_asset(nome: String, preco: f64, quantidade: i32)->Asset {
         Asset{nome,
             preco,
             quantidade}
     }
-   pub fn get_nome(&self){
-     self.nome
-   } 
-   pub fn set_nome(&self,nome){
-    self.nome=nome
+    pub fn get_nome(&self) -> &String {
+        &self.nome
+    }
+   pub fn set_nome(&mut self,nome:String){
+      self.nome=nome
   } 
-  pub fn get_preco(&self){
+  
+  pub fn get_preco(&self)->f64{
     self.preco
   } 
-  pub fn set_preco(&self,preco){
+  pub fn set_preco(&mut self,preco:f64){
     self.preco=preco
   } 
-  pub fn get_quantidade(&self){
+  pub fn get_quantidade(&self)->i32{
     self.quantidade
   } 
-  pub fn set_quantidade(&self,quantidade){
+  pub fn set_quantidade(&mut self,quantidade:i32){
     self.quantidade=quantidade
   } 
-
+ 
 }
 impl Portfolio {
     pub fn new() -> Portfolio {
@@ -42,14 +43,14 @@ impl Portfolio {
     pub fn add_asset(&mut self, asset: Asset) {
         self.assets.push(asset);
     }
-    pub fn total_value(&self) -> f64 {
-          let soma=0;
-          for i in &self.imoveis {
+    pub fn total_value(&self,mut soma:f64) -> f64 {
+          
+          for i in &self.assets {
                 println!("nome: {} | Preço: {} | Quantidade: {}",
                          i.nome, i.preco, i.quantidade);
-                 soma+=i.preco
+                 soma=soma+i.preco*i.quantidade as f64;
             }
-             soma
+              soma
         }
     }
 
