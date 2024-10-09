@@ -1,6 +1,9 @@
-use estatisticas_descritivas_structs::executar_estatisticas_descritivas;
+mod lib;
+use lib::{EstatisticasDescritivas};
+use lib::executar_estatisticas_descritivas;
+//use s4149::executar_estatisticas_descritivas; acima ou essa
 
 fn main() {
-    let numeros = vec![1, 1, 2, 3, 4, 4, 4, 5, 6, 0];
+    let numeros = vec![1, 1, 1, 2, 3, 4, 4, 4, 5, 6, 0];
     executar_estatisticas_descritivas(numeros);
 }
