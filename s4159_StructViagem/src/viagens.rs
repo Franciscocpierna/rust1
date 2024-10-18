@@ -2,39 +2,43 @@
 
 
 //Crie uma struct para armazenar os dados dos passageiros.
-struct Passageiros{
+pub struct Passageiros{
    pub nome:String,
    pub numero_passaporte: String,
    pub idade: u8
 }
 
 //2. Crie uma struct para armazenar os dados dos vôos.
-struct Voo{
+pub struct Voo{
    pub codigo_voo: String,
    pub partida: String,
    pub destino: String,
    pub data_partida: String,
    pub hora_partida: String
 }
- pub impl Passageiros{
+ impl Passageiros{
   // Crie uma função para adicionar um novo passageiro.
-  pub fn new_passageiro(nome: String,numero_passaporte String,idade:u8) ->Passageiros{
+  pub fn new_passageiro(nome: String,numero_passaporte: String,idade: u8) ->Passageiros{
         Passageiros {
             nome,
-            numero_passaporte String,
-            idade:u8
+            numero_passaporte,
+            idade
 
         }
   }
   // Crie uma função para exibir todos os passageiros.
-  fn exibir_passageiros(){
-    
+  pub fn exibir_passageiros(passageiro: Passageiros){
+     println!("Exibindo passageiros");
+     println!("Nome: {}", passageiro.nome);
+     println!("Passaporte: {}", passageiro.numero_passaporte);
+     println!("Idade: {}", passageiro.idade);
+     println!();
   }
  }
 
-pub impl voo{
+ impl Voo{
    //Crie uma função para adicionar um novo vôo.
-   fn new_voo(nome: String,numero_passaporte String,idade:u8) ->Passageiros{
+   pub fn new_voo(codigo_voo: String,partida: String,destino: String,data_partida: String,hora_partida: String) ->Voo{
      Voo{
         codigo_voo,
         partida,
@@ -46,9 +50,15 @@ pub impl voo{
     }
 
     //Crie uma função para exibir todos os vôos.
-   pub fn exibir_voos(){
-
-
+   pub fn exibir_voos(voo: Voo){
+       println!("Exibindo Voo");
+       println!("Codigo: {}", voo.codigo_voo);
+       println!("Partida: {}", voo.partida);
+       println!("Destino: {}", voo.destino);
+       println!("Data da Partida: {}", voo.data_partida);
+       println!("Hora da Partida: {}", voo.hora_partida);
+       println!();
+      
    }
 }
 
@@ -64,7 +74,7 @@ pub impl voo{
 
 
 
-/*
+/* professor
 // Crie uma struct para armazenar os dados dos passageiros
 pub struct Dados_Passageiros {
     pub nome: String,

@@ -1,19 +1,23 @@
 mod viagens;
 use viagens::Passageiros;
 use viagens::Voo;
-//use viagens::{Passageiros, Voo};
+
 
 
 fn main() {
     //Crie o programa principal para adicionar alguns passageiros e vôos, bem como exibir os dados.
-    let mut voo_passageiros  = Vec::new();
- 
-    voo1: Voo = new_voo(String::from("1"), String::from("São Paulo"), String::from("Sorocaba"), String::from("10/11/2024"), String::from("05:00"));
+    let  voo1  = Voo::new_voo(String::from("1"), String::from("São Paulo"), String::from("Sorocaba"), String::from("10/11/2024"), String::from("05:00"));
+      
+    let passageiro1: Passageiros  = Passageiros::new_passageiro(String::from("Geraldo"), String::from("456BR"), 18);
+    let passageiro2: Passageiros = Passageiros::new_passageiro(String::from("Antonia"), String::from("60BR"), 21);
+    let passageiro3: Passageiros = Passageiros::new_passageiro(String::from("Joao"), String::from("59BR"), 25);
+    Voo::exibir_voos(voo1);
+    Passageiros::exibir_passageiros(passageiro1);
+    Passageiros::exibir_passageiros(passageiro2);
+    Passageiros::exibir_passageiros(passageiro3);
+    
 
-    passageiro1: Passageiros  = new_passageiro(String::from("Manoel"), String::from("456BR"), 18);
-    passageiro2: Passageiros = new_passageiro(String::from("Maria"), String::from("60BR"), 21);
-    passageiro3: Passageiros = new_passageiro(String::from("Pedro"), String::from("59BR"), 25);
-
+    
 
 
 
