@@ -1,0 +1,6 @@
+[package]
+name = "s5185_ganhos_Uber"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
