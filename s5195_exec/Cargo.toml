@@ -1,0 +1,6 @@
+[package]
+name = "s5195_exec"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
