@@ -1,0 +1,6 @@
+[package]
+name = "s6210_comunicacao_threads"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
