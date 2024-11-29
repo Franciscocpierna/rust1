@@ -1,0 +1,8 @@
+[package]
+name = "s6226_biblioteca"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+comprimentos = {path = "comprimentos/"}
+anyhow = "1.0"
