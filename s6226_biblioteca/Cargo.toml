@@ -4,5 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-comprimentos = {path = "comprimentos/"}
+rand = "0.3"
+comprimentos = { path = "comprimentos/"}
+to_do_list = { path = "to_do_list/"}
 anyhow = "1.0"
