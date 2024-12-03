@@ -24,7 +24,7 @@ fn main() {
     // limpar as tarefas
     to_do_list.clear_tasks();
 
-    println!("Lista de tarefas após limpeza");
+    println!("\nLista de tarefas após limpeza");
     for (index, task) in to_do_list.get_tasks().iter().enumerate(){
         println!("{} - {} {}",index + 1, task.description, if task.completed{"[concluida]"} else{""});
     }
