@@ -1,0 +1,9 @@
+[package]
+name = "s6232_estrutura_point"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+
+[lib]
+path = "src/point.rs"  
