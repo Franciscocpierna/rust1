@@ -1,9 +1,10 @@
 [package]
-name = "s6232_estrutura_point"
+name = "s6235_retangulo_testes"
 version = "0.1.0"
 edition = "2021"
 
 [dependencies]
 
 [lib]
-path = "src/point.rs"  
+path = "src/rectangle.rs"  
+
