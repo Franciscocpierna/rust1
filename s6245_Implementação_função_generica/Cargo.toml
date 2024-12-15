@@ -1,0 +1,6 @@
+[package]
+name = "s6245_Implementação_função_generica"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
