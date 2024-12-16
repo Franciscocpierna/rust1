@@ -1,0 +1,6 @@
+[package]
+name = "s6251_Implementação_Estrutura_Barlho_generico"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
