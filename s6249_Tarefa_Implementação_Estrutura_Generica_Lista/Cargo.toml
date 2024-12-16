@@ -1,0 +1,6 @@
+[package]
+name = "s6249_Tarefa_Implementação_Estrutura_Generica_Lista"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
