@@ -1,0 +1,6 @@
+[package]
+name = "s6258_Implementação_Estrutura_Generica_Repositorio"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
