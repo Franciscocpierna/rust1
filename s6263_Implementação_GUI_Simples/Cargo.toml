@@ -1,0 +1,6 @@
+[package]
+name = "s6263_Implementação_GUI_Simples"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
