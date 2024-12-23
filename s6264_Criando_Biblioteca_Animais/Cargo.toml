@@ -1,0 +1,6 @@
+[package]
+name = "s6264_Criando_Biblioteca_Animais"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
