@@ -1,0 +1,6 @@
+[package]
+name = "s6269_movendo_propriedades_valores_closures"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
