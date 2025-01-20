@@ -1,0 +1,12 @@
+Rust:
+safe, fast, productive.
+Pick three.
+ 
+Trust me, you will love Rust!
+Rust is a system programming language that runs blazingly fast, prevents segfaults, and guarantees thread safety.
+ 
+Learning Rust can be fun and challenging.
+Try Rust and experience the performance.
+Some people say, "Once you go Rust, you never go back."
+ 
+Happy coding with Rust!

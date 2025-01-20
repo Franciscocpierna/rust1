@@ -4,3 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+vector_math = { path = "../vector_math"}
+
+[lib]
+path = "src/lib.rs"
