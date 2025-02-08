@@ -4,7 +4,7 @@ use std::io::{BufRead, BufReader, Error, ErrorKind, Result};
 fn main() -> Result<()> {
     // Abrindo o arquivo para leitura
     let file = File::open("input.txt")?;
-    let reader = BufReader::new(file);
+    let reader = BufReader::new(file);  
 
     // Coletando as linhas até encontrar uma linha vazia
     let rest_of_the_first_group: Result<Vec<_>> = reader
