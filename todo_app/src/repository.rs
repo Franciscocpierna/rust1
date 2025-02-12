@@ -1,7 +1,14 @@
+use crate::models::TodoListFilter;
+use crate::models::Todo;
+use crate::models::TodoToggleAction;
+use std::collections::HashMap;
+use uuid::Uuid;
+#[derive(Debug, PartialEq, Eq)]
 pub enum TodoRepoError{
     NotFound,
 }
 
+#[derive(Debug, Default)]
 pub struct TodoRepo{
     pub num_comleted_items: u32,
     pub num_active_items: u32,
@@ -11,7 +18,7 @@ pub struct TodoRepo{
 }
 impl TodoRepo{
     pub fn get(&self,id: Uuid) -> Result<Todo, TodoRepoError>{
-        seif.items.get(&id).cloned().ok_or(TodoRepoError::NotFound)
+        self.items.get(&id).cloned().ok_or(TodoRepoError::NotFound)
     }
     pub fn list(&self, filter: &TodoListFilter) -> Vec<Todo>{
        let mut todos = self.
@@ -49,7 +56,7 @@ impl TodoRepo{
                   &mut  self,
                   id: &Uuid,
                   text: Option<String>,
-                  is_completed: Option<boll>
+                  is_completed: Option<bool>
                 ) -> Result<Todo, TodoRepoError>{
                     let todo = self.items.get_mut(id).ok_or(TodoRepoError::NotFound)?;
                     if let Some(is_completed) = is_completed{
@@ -67,5 +74,46 @@ impl TodoRepo{
                     }
                     Ok(todo.clone())
                 }
-                
+                pub fn delete_completed(&mut self){
+                      
+                    self.items.retain (|_, todo| !todo.is_completed);
+                    self.num_all_items -= self.num_comleted_items;   
+                    self.num_comleted_items = 0;
+                }
+                pub fn toggle_completed(&mut self, action: &TodoToggleAction){
+                    let is_completed: bool;
+                    match action{
+                         TodoToggleAction::Uncheck  => {
+                            self.num_comleted_items = 0;
+                            self.num_active_items = self.num_all_items;
+                            is_completed = false;
+                         }
+                         TodoToggleAction::Check => {
+                            self.num_comleted_items =  self.num_all_items;
+                            self.num_active_items = 0;
+                            is_completed = true;
+
+                         }
+                         
+                    } 
+                    for todo in self.items.values_mut(){
+                        todo.is_completed = is_completed;
+                    }
+
+                }              
+}
+
+#[cfg(test)]
+mod tests{
+    use super::*;
+    
+    #[test]
+    fn test_get_non_existing_todo(){
+        let repo =  TodoRepo::default();
+        let id = Uuid::new_v4();
+        let result = repo.get(id);
+        assert_eq!(result, Err(TodoRepoError::NotFound));
+
+    }
+
 }

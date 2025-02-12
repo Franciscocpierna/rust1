@@ -1,12 +1,13 @@
 use serde::{Serialize, Deserialize};
 use std::fmt;
+
 use std::time::SystemTime;
 use uuid::Uuid;
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Todo{
     pub is_completed: bool,
     pub created_at: SystemTime,
-    pub tex: String,
+    pub text: String,
     pub  id: Uuid,
 
 
@@ -31,14 +32,16 @@ pub enum TodoListFilter{
 }
 impl fmt::Display for TodoListFilter{
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        match  Self{
-            Self::completed => write!(f, "completed"),
+        match self{
+            Self::Completed => write!(f, "completed"),
             Self::Active => write!(f, "active"), 
             Self::All => write!(f, "all"),
         }
     }
+}
+
 #[derive(Debug, Clone, Copy, Serialize, Deserialize, PartialEq, Eq)]
-pub enum TodoToggleAction {
+pub enum TodoToggleAction{
     Uncheck,
     Check,
 }
@@ -52,4 +55,4 @@ pub enum TodoToggleAction {
 
         }
     }
- }
+ 
