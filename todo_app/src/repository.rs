@@ -210,5 +210,59 @@ mod tests{
          assert_eq!(repo.num_all_items,2);
 
       }
-    
+     #[test]
+     fn test_delete_non_existing_todo(){
+         let mut repo = TodoRepo::default();
+         let id = Uuid::new_v4();
+         let result = repo.delete(&id);
+         assert_eq!(result, Err(TodoRepoError::NotFound));
+     }
+    #[test]
+    fn  test_delete_existing_todo(){
+        let id = Uuid::new_v4();
+         let mut repo = TodoRepo{
+            items: HashMap::from([(id, Todo::new("a")), (Uuid::new_v4(), Todo::new("b"))]),
+            num_comleted_items: 0,
+            num_active_items: 2,
+            num_all_items: 2,
+        };
+        let result = repo.delete(&id);
+        assert_eq!(repo.num_comleted_items, 0);
+        assert_eq!(repo.num_active_items, 1);
+        assert_eq!(repo.num_all_items, 1);
+        
+        assert_eq!(result, Ok(()));
+       
+       
+        
+       
+    }
+    #[test]
+    fn test_update_non_existing_todo(){
+        let mut repo = TodoRepo::default();
+        let id = Uuid::new_v4();
+        let result = repo.update(&id, None, None);
+        assert_eq!(result, Err(TodoRepoError::NotFound));
+    } 
+    #[test]
+    fn test_update_text_existing_todo(){
+        let todo = Todo::new("test");
+        let id = Uuid::new_v4();
+
+        let mut repo = TodoRepo{
+            items: HashMap::from([(id, todo.clone())]),
+            num_comleted_items: 0,
+            num_active_items: 1,
+            num_all_items: 1,
+        };
+        let result = repo.update(&id, Some("update".to_string()), None);
+        assert!(result.is_ok());
+        if let Ok(update) = result{
+             assert_eq!(update.is_completed, todo.is_completed);
+             assert_eq!(update.created_at, todo.created_at);
+             assert_eq!(update.id, todo.id);
+             assert_eq!(update.text, "update".to_string());
+        }
+       
+    }
 }
