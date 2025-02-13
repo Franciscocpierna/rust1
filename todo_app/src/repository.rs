@@ -105,6 +105,8 @@ impl TodoRepo{
 
 #[cfg(test)]
 mod tests{
+    use std::result;
+
     use super::*;
     
     #[test]
@@ -115,5 +117,98 @@ mod tests{
         assert_eq!(result, Err(TodoRepoError::NotFound));
 
     }
+    #[test]
+    fn  test_get_existing_todo(){
+        let todo = Todo::new("test");
+        let id = Uuid::new_v4();
+        let  repo = TodoRepo{
+          items: HashMap::from([(id, todo.clone())]),
+          ..Default::default()  
+        };
+        let result = repo.get(id);
+        assert_eq!(result, Ok(todo));
+    }
+    #[test]
+    fn test_list_empty_repo(){
+        let repo = TodoRepo::default();
+        let empty = Vec::new();
+        let result_completed  =  repo.list(&TodoListFilter::Completed); 
+        let result_active = repo.list(&TodoListFilter::Active);
+        let result_all = repo.list(&TodoListFilter::All);
+        assert_eq!(result_completed, empty);
+        assert_eq!(result_active, empty);
+        assert_eq!(result_all, empty);
 
+   }
+   #[test]
+   fn list_filled_repo_active(){
+       let todo_a =  Todo::new("a");
+       let todo_b = Todo::new("b");
+       let todo_c = Todo::new("c");
+       let filled = [todo_c.clone(), todo_b.clone(), todo_a.clone()];
+       let empty = Vec::new();
+       let repo = TodoRepo{
+           items: HashMap::from([
+               (Uuid::new_v4() , todo_a.clone()),
+               (Uuid::new_v4(), todo_b.clone()),
+               (Uuid::new_v4(), todo_c.clone()),
+           ]),
+           ..Default::default()
+       };
+       let result_completed = repo.list(&TodoListFilter::Completed);
+       let result_active = repo.list(&TodoListFilter::Active);
+       let result_all = repo.list(&TodoListFilter::All);
+       assert_eq!(result_completed, empty);
+       assert_eq!(result_active, filled);
+       assert_eq!(result_all, filled);
+
+   }
+
+   #[test]
+   fn list_filled_repo_completed(){
+       let mut todo_a =  Todo::new("a");
+       let mut todo_b = Todo::new("b");
+       let todo_c = Todo::new("c");
+       todo_a.is_completed = true;
+       todo_b.is_completed = true;
+       let completed = vec![todo_b.clone(), todo_a.clone()];
+       let active = vec![todo_c.clone()];
+       let all = vec![todo_c.clone(), todo_b.clone(), todo_a.clone()];
+       
+       let repo = TodoRepo{
+           items: HashMap::from([
+               (Uuid::new_v4() , todo_a.clone()),
+               (Uuid::new_v4(), todo_b.clone()),
+               (Uuid::new_v4(), todo_c.clone()),
+           ]),
+           ..Default::default()
+       };
+       let result_completed = repo.list(&TodoListFilter::Completed);
+       let result_active = repo.list(&TodoListFilter::Active);
+       let result_all = repo.list(&TodoListFilter::All);
+      
+       assert_eq!(result_completed, completed);
+       assert_eq!(result_active, active);
+       assert_eq!(result_all, all);
+
+   }
+    #[test]
+    fn  test_create_todo(){
+        
+        let mut repo = TodoRepo{
+            items: HashMap::from([(Uuid::new_v4(), Todo::new("a"))]),
+            num_comleted_items: 0,
+            num_active_items: 1,
+            num_all_items: 1,
+
+        };
+         let result = repo.create("new");
+         assert_eq!(result.text, "new".to_string());
+         assert!(!result.is_completed);
+         assert_eq!(repo.num_comleted_items,0);
+         assert_eq!(repo.num_active_items,2);
+         assert_eq!(repo.num_all_items,2);
+
+      }
+    
 }
