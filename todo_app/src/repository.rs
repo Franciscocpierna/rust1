@@ -105,7 +105,7 @@ impl TodoRepo{
 
 #[cfg(test)]
 mod tests{
-    use std::result;
+   // use std::result;
 
     use super::*;
     
@@ -138,7 +138,6 @@ mod tests{
         assert_eq!(result_completed, empty);
         assert_eq!(result_active, empty);
         assert_eq!(result_all, empty);
-
    }
    #[test]
    fn list_filled_repo_active(){
@@ -217,6 +216,7 @@ mod tests{
          let result = repo.delete(&id);
          assert_eq!(result, Err(TodoRepoError::NotFound));
      }
+    
     #[test]
     fn  test_delete_existing_todo(){
         let id = Uuid::new_v4();
@@ -244,6 +244,7 @@ mod tests{
         let result = repo.update(&id, None, None);
         assert_eq!(result, Err(TodoRepoError::NotFound));
     } 
+
     #[test]
     fn test_update_text_existing_todo(){
         let todo = Todo::new("test");
@@ -264,5 +265,81 @@ mod tests{
              assert_eq!(update.text, "update".to_string());
         }
        
+    }
+    
+    #[test]
+    fn test_update_is_completed_true_existing_todo(){
+        let todo = Todo::new("test");
+        let id = Uuid::new_v4();
+
+        let mut repo = TodoRepo{
+            items: HashMap::from([(id, todo.clone())]),
+            num_comleted_items: 0,
+            num_active_items: 1,
+            num_all_items: 1,
+        };
+        let result = repo.update(&id, None, Some(true));
+        assert!(result.is_ok());
+        if let Ok(update) = result{
+             assert_eq!(update.is_completed, true);
+             assert_eq!(update.created_at, todo.created_at);
+             assert_eq!(update.id, todo.id);
+             assert_eq!(update.text, todo.text);
+        }
+        assert_eq!(repo.num_comleted_items, 1);
+        assert_eq!(repo.num_active_items, 0);
+        assert_eq!(repo.num_all_items, 1);
+    }
+    #[test]
+    fn test_update_is_completed_false_existing_todo(){
+        let mut todo = Todo::new("test");
+        todo.is_completed = true;
+        let id = Uuid::new_v4();
+
+        let mut repo = TodoRepo{
+            items: HashMap::from([(id, todo.clone())]),
+            num_comleted_items: 1,
+            num_active_items: 0,
+            num_all_items: 1,
+        };
+        let result = repo.update(&id, None, Some(false));
+        assert!(result.is_ok());
+        if let Ok(update) = result{
+             assert_eq!(update.is_completed, false);
+             assert_eq!(update.created_at, todo.created_at);
+             assert_eq!(update.id, todo.id);
+             assert_eq!(update.text, todo.text);
+        }
+        assert_eq!(repo.num_comleted_items, 0);
+        assert_eq!(repo.num_active_items, 1);
+        assert_eq!(repo.num_all_items, 1);
+    }
+    #[test]
+    fn test_delete_completed_todos(){
+        let mut todo_a =  Todo::new("a");
+        let mut todo_b = Todo::new("b");
+        let todo_c = Todo::new("c");
+
+        todo_a.is_completed = true;
+        todo_b.is_completed = true;
+        let active = vec![todo_c.clone()];
+
+        let mut repo = TodoRepo{
+            items: HashMap::from([
+                (Uuid::new_v4() , todo_a.clone()),
+                (Uuid::new_v4(), todo_b.clone()),
+                (Uuid::new_v4(), todo_c.clone()),
+            ]),
+            num_comleted_items: 2,
+            num_active_items: 1,
+            num_all_items: 3,
+        };
+        repo.delete_completed();
+        assert_eq!(repo.items.into_values().collect::<Vec<_>>(), active);
+
+        assert_eq!(repo.num_comleted_items, 0);
+        assert_eq!(repo.num_active_items, 1);
+        assert_eq!(repo.num_all_items, 1);
+        
     }
 }
