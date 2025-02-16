@@ -24,7 +24,7 @@ fn create_user(name: String){
 fn delete_user(id: i32){
     println!("deletando o usuario com id: {}", id);
 }
-#[put("/users/<id>/<name>")]
+#[put("/users?<id>&<name>")]
 fn update_user(id: u32, name: String){
     println!("atualizando o usuario com id: {} e nome: {}", id, name);
 }
