@@ -38,9 +38,18 @@ fn search_user(query: String, page: Option<u32>) -> String {
     }
 }
 
+#[catch(404)]
+fn not_found() -> &'static str {
+    "Página não encontrada"
+}
+
 #[launch]
 fn rocket() -> _ {
-    rocket::build().mount("/", routes![index,get_user,create_user,delete_user,update_user,search_user])
+   // rocket::build().mount("/", routes![index,get_user,create_user,delete_user,update_user,search_user])
+   rocket::build()
+   .mount("/",routes![index])
+   .register("/",catchers![not_found])
+
 }
 
 /*fn main() {
