@@ -71,7 +71,7 @@ fn rocket() -> _ {
 
    local_state.insert("Belo Horizonte".to_string(), Local{
         temperatura: 30.0,
-        cidade: "Beloi Horizonte".to_string()
+        cidade: "Belo Horizonte".to_string()
    });
    rocket::build()
    .mount("/", routes![index,temperatura])
